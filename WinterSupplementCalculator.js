@@ -45,29 +45,29 @@ function calculateWinterSupplement(input) {
       childrenAmount: 0,
       supplementAmount: 0,
     };
-  } else {
-    let baseAmount = 0;
-    let childrenAmount = 0;
-
-    if (numberOfChildren > 0) {
-      baseAmount = 120;
-      childrenAmount = numberOfChildren * 20;
-    } else if (familyComposition === 'single') {
-      baseAmount = 60;
-    } else if (familyComposition === 'couple') {
-      baseAmount = 120;
-    }
-
-    const supplementAmount = baseAmount + childrenAmount;
-
-    return {
-      id,
-      isEligible,
-      baseAmount,
-      childrenAmount,
-      supplementAmount,
-    };
   }
+
+  let baseAmount = 0;
+  let childrenAmount = 0;
+
+  if (numberOfChildren > 0) {
+    baseAmount = 120;
+    childrenAmount = numberOfChildren * 20;
+  } else if (familyComposition === 'single') {
+    baseAmount = 60;
+  } else if (familyComposition === 'couple') {
+    baseAmount = 120;
+  }
+
+  const supplementAmount = baseAmount + childrenAmount;
+
+  return {
+    id,
+    isEligible,
+    baseAmount,
+    childrenAmount,
+    supplementAmount,
+  };
 }
 
 const result = calculateWinterSupplement({
