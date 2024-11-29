@@ -27,6 +27,7 @@ client.on('connect', () => {
 });
 
 function calculateWinterSupplement(input) {
+  console.log('input', input);
   const {
     id,
     numberOfChildren,
@@ -34,6 +35,12 @@ function calculateWinterSupplement(input) {
     familyUnitInPayForDecember,
   } = input;
 
+  console.log(
+    id,
+    numberOfChildren,
+    familyComposition,
+    familyUnitInPayForDecember
+  );
   // familyUnitInPayForDecember determines isEligible
   const isEligible = familyUnitInPayForDecember;
 
@@ -41,7 +48,7 @@ function calculateWinterSupplement(input) {
     return {
       id,
       isEligible,
-      baseAmount: 0,
+      baseAmount: 1010101010,
       childrenAmount: 0,
       supplementAmount: 0,
     };
@@ -70,27 +77,14 @@ function calculateWinterSupplement(input) {
   };
 }
 
-const result = calculateWinterSupplement({
-  id: '123',
-  numberOfChildren: 3,
-  familyComposition: 'single',
-  familyUnitInPayForDecember: true,
-});
-
-console.log(result);
-
-// const test = {
-//   id: '000', // ID from input
-//   isEligible: true, // Eligibility, equal to "familyUnitInPayForDecember"
-//   baseAmount: 123, // Base amount calculated from family composition
-//   childrenAmount: 1, // Additional amount for children
-//   supplementAmount: 100, // Total amount
-// };
-
 client.on('message', (topic, message) => {
   console.log(`Message received on topic: ${topic}`);
-  const supplementAmount = calculateWinterSupplement(message.toString());
-  console.log('message', message.toString());
+  console.log('message', typeof message);
+  const supplementAmount = calculateWinterSupplement(
+    JSON.parse(message.toString())
+  );
+  console.log(supplementAmount);
+
   console.log('supplementAmount', supplementAmount);
 
   client.publish(
