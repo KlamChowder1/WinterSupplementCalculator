@@ -21,12 +21,13 @@
 ```
 {
 "id": "0",
-"numberOfChildren": "int",
+"numberOfChildren": "2",
 "familyComposition": "single",
 "familyUnitInPayForDecember": true
 }
 ```
-![image](https://github.com/user-attachments/assets/f2103b7a-e21d-4cae-bedc-34d1c3e67736)
+
+![image](https://github.com/user-attachments/assets/e0547df3-aa86-4aeb-93de-746596041917)
 
 - Search BRE in the search MQTT Explorer search bar
   
@@ -34,5 +35,6 @@
 
 - once you click publish for the json payload with the input data, you will see the input under the `BRE/calculateWinterSupplementInput/2` Topic and the published output from the rules engine in the `BRE/calculateWinterSupplementOutput/2` Topic
 
-![image](https://github.com/user-attachments/assets/2a8aba35-b065-4392-9649-89aa277704a5)
+![image](https://github.com/user-attachments/assets/10fef3f4-cd9f-44d9-9695-9fa3a93a765e)
+
 
