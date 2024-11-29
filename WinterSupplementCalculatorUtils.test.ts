@@ -78,10 +78,10 @@ describe('calculateWinterSupplement', () => {
     expect(calculateWinterSupplement(input)).toEqual(output);
   });
 
-  it('should return base amount of 120, children amount of 60, and supplement amount of 180 for a couple with 2 children', () => {
+  it('should return base amount of 120, children amount of 40, and supplement amount of 160 for a couple with 2 children', () => {
     const input: WinterSupplementInput = {
       id: '0',
-      numberOfChildren: 3,
+      numberOfChildren: 2,
       familyComposition: 'couple',
       familyUnitInPayForDecember: true,
     };
@@ -90,8 +90,8 @@ describe('calculateWinterSupplement', () => {
       id: '0',
       isEligible: true,
       baseAmount: 120,
-      childrenAmount: 60,
-      supplementAmount: 180,
+      childrenAmount: 40,
+      supplementAmount: 160,
     };
 
     expect(calculateWinterSupplement(input)).toEqual(output);
