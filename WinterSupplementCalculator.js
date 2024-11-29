@@ -1,47 +1,33 @@
-import mqtt from 'mqtt';
-import dotenv from 'dotenv';
-
-import { calculateWinterSupplement } from './WinterSupplementCalculatorUtils.js';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var mqtt_1 = require("mqtt");
+var dotenv = require("dotenv");
+var WinterSupplementCalculatorUtils_js_1 = require("./WinterSupplementCalculatorUtils.js");
 dotenv.config();
-
-const BROKER_URL = 'mqtt://test.mosquitto.org';
-const INPUT_TOPIC_PREFIX = 'BRE/calculateWinterSupplementInput/';
-const OUTPUT_TOPIC_PREFIX = 'BRE/calculateWinterSupplementOutput/';
-
-const client = mqtt.connect(BROKER_URL);
-
-client.on('connect', () => {
-  console.log('Connected to MQTT broker');
-
-  client.subscribe(
-    `${INPUT_TOPIC_PREFIX}${process.env.MQTT_TOPIC_ID}`,
-    (err) => {
-      if (err) {
-        console.error('Error:', err);
-      } else {
-        console.log(
-          `Subscribed to topic: ${INPUT_TOPIC_PREFIX}${process.env.MQTT_TOPIC_ID}`
-        );
-      }
-    }
-  );
+var BROKER_URL = 'mqtt://test.mosquitto.org';
+var INPUT_TOPIC_PREFIX = 'BRE/calculateWinterSupplementInput/';
+var OUTPUT_TOPIC_PREFIX = 'BRE/calculateWinterSupplementOutput/';
+var client = mqtt_1.default.connect(BROKER_URL);
+client.on('connect', function () {
+    console.log('Connected to MQTT broker');
+    client.subscribe("".concat(INPUT_TOPIC_PREFIX).concat(process.env.MQTT_TOPIC_ID), function (err) {
+        if (err) {
+            console.error('Error:', err);
+        }
+        else {
+            console.log("Subscribed to topic: ".concat(INPUT_TOPIC_PREFIX).concat(process.env.MQTT_TOPIC_ID));
+        }
+    });
 });
-
-client.on('message', (topic, message) => {
-  console.log(`Message received on topic: ${topic}`);
-  const supplementAmount = calculateWinterSupplement(
-    JSON.parse(message.toString())
-  );
-  client.publish(
-    `${OUTPUT_TOPIC_PREFIX}${process.env.MQTT_TOPIC_ID}`,
-    JSON.stringify(supplementAmount),
-    (err) => {
-      if (err) {
-        console.error('Publish error:', err);
-      } else {
-        console.log(`Published result`);
-      }
-    }
-  );
+client.on('message', function (topic, message) {
+    console.log("Message received on topic: ".concat(topic));
+    var supplementAmount = (0, WinterSupplementCalculatorUtils_js_1.calculateWinterSupplement)(JSON.parse(message.toString()));
+    client.publish("".concat(OUTPUT_TOPIC_PREFIX).concat(process.env.MQTT_TOPIC_ID), JSON.stringify(supplementAmount), function (err) {
+        if (err) {
+            console.error('Publish error:', err);
+        }
+        else {
+            console.log("Published result");
+        }
+    });
 });

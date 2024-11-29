@@ -1,7 +1,6 @@
 {
   "name": "wintersupplementcalculator",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "main": "WinterSupplementCalculator.js",
   "scripts": {
@@ -11,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5",
-    "mqtt": "^5.10.3"
+    "mqtt": "^5.10.3",
+    "typescript": "^5.7.2"
   }
 }
