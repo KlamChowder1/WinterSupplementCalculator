@@ -1,22 +1,9 @@
-export interface WinterSupplementInput {
-  id: string;
-  numberOfChildren: number;
-  familyComposition: 'single' | 'couple';
-  familyUnitInPayForDecember: boolean;
-}
-
-export interface WinterSupplementOutput {
-  id: string;
-  isEligible: boolean;
-  baseAmount: number;
-  childrenAmount: number;
-  supplementAmount: number;
-}
+import { WinterSupplementInput, WinterSupplementOutput } from './types';
 
 export function calculateWinterSupplement(
   input: WinterSupplementInput
 ): WinterSupplementOutput {
-  console.log('input', input);
+  // console.log('input', input);
   const {
     id,
     numberOfChildren,
@@ -24,12 +11,12 @@ export function calculateWinterSupplement(
     familyUnitInPayForDecember,
   } = input;
 
-  console.log(
-    id,
-    numberOfChildren,
-    familyComposition,
-    familyUnitInPayForDecember
-  );
+  // console.log(
+  //   id,
+  //   numberOfChildren,
+  //   familyComposition,
+  //   familyUnitInPayForDecember
+  // );
   // familyUnitInPayForDecember determines isEligible
   const isEligible = familyUnitInPayForDecember;
 

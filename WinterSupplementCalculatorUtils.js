@@ -2,9 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.calculateWinterSupplement = calculateWinterSupplement;
 function calculateWinterSupplement(input) {
-    console.log('input', input);
+    // console.log('input', input);
     var id = input.id, numberOfChildren = input.numberOfChildren, familyComposition = input.familyComposition, familyUnitInPayForDecember = input.familyUnitInPayForDecember;
-    console.log(id, numberOfChildren, familyComposition, familyUnitInPayForDecember);
+    // console.log(
+    //   id,
+    //   numberOfChildren,
+    //   familyComposition,
+    //   familyUnitInPayForDecember
+    // );
     // familyUnitInPayForDecember determines isEligible
     var isEligible = familyUnitInPayForDecember;
     if (!isEligible) {
