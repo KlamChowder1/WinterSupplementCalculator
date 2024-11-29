@@ -1,4 +1,21 @@
-export function calculateWinterSupplement(input) {
+export interface WinterSupplementInput {
+  id: string;
+  numberOfChildren: number;
+  familyComposition: 'single' | 'couple';
+  familyUnitInPayForDecember: boolean;
+}
+
+export interface WinterSupplementOutput {
+  id: string;
+  isEligible: boolean;
+  baseAmount: number;
+  childrenAmount: number;
+  supplementAmount: number;
+}
+
+export function calculateWinterSupplement(
+  input: WinterSupplementInput
+): WinterSupplementOutput {
   console.log('input', input);
   const {
     id,
