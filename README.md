@@ -12,3 +12,21 @@
 
 - run `tsc .\WinterSupplementCalculatorUtils.test.ts` in the root folder to compile the WinterSupplementCalculatorUtils.test.ts file
 - run `npm run test` to run the test suites
+
+# Testing with the Web Application
+
+- Topic: BRE/calculateWinterSupplementInput/2
+- select json
+
+```
+{
+"id": "0",
+"numberOfChildren": "int",
+"familyComposition": "single",
+"familyUnitInPayForDecember": true
+}
+```
+
+- Search BRE in the search MQTT Explorer Search Bar
+- the input will be visibile under the BRE/calculateWinterSupplementInput/2 Topic
+- once you publish the json payload with the input data, you will see the output in the /calculateWinterSupplementOutput/2 Topic
