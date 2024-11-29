@@ -1,5 +1,7 @@
-const mqtt = require('mqtt');
-const dotenv = require('dotenv');
+import mqtt from 'mqtt';
+import dotenv from 'dotenv';
+
+import { calculateWinterSupplement } from './WinterSupplementCalculatorUtils.js';
 
 dotenv.config();
 
@@ -26,67 +28,11 @@ client.on('connect', () => {
   );
 });
 
-function calculateWinterSupplement(input) {
-  console.log('input', input);
-  const {
-    id,
-    numberOfChildren,
-    familyComposition,
-    familyUnitInPayForDecember,
-  } = input;
-
-  console.log(
-    id,
-    numberOfChildren,
-    familyComposition,
-    familyUnitInPayForDecember
-  );
-  // familyUnitInPayForDecember determines isEligible
-  const isEligible = familyUnitInPayForDecember;
-
-  if (!isEligible) {
-    return {
-      id,
-      isEligible,
-      baseAmount: 1010101010,
-      childrenAmount: 0,
-      supplementAmount: 0,
-    };
-  }
-
-  let baseAmount = 0;
-  let childrenAmount = 0;
-
-  if (numberOfChildren > 0) {
-    baseAmount = 120;
-    childrenAmount = numberOfChildren * 20;
-  } else if (familyComposition === 'single') {
-    baseAmount = 60;
-  } else if (familyComposition === 'couple') {
-    baseAmount = 120;
-  }
-
-  const supplementAmount = baseAmount + childrenAmount;
-
-  return {
-    id,
-    isEligible,
-    baseAmount,
-    childrenAmount,
-    supplementAmount,
-  };
-}
-
 client.on('message', (topic, message) => {
   console.log(`Message received on topic: ${topic}`);
-  console.log('message', typeof message);
   const supplementAmount = calculateWinterSupplement(
     JSON.parse(message.toString())
   );
-  console.log(supplementAmount);
-
-  console.log('supplementAmount', supplementAmount);
-
   client.publish(
     `${OUTPUT_TOPIC_PREFIX}${process.env.MQTT_TOPIC_ID}`,
     JSON.stringify(supplementAmount),
