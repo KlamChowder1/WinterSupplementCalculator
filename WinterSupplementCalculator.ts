@@ -2,46 +2,43 @@ import mqtt from 'mqtt';
 import * as dotenv from 'dotenv';
 
 import { calculateWinterSupplement } from './WinterSupplementCalculatorUtils.js';
+import { WinterSupplementInput, WinterSupplementOutput } from './types.js';
 
 dotenv.config();
 
 const BROKER_URL = 'mqtt://test.mosquitto.org';
-const INPUT_TOPIC_PREFIX = 'BRE/calculateWinterSupplementInput/';
-const OUTPUT_TOPIC_PREFIX = 'BRE/calculateWinterSupplementOutput/';
+const INPUT_TOPIC = `BRE/calculateWinterSupplementInput/${process.env.MQTT_TOPIC_ID}`;
+const OUTPUT_TOPIC = `BRE/calculateWinterSupplementOutput/${process.env.MQTT_TOPIC_ID}`;
 
 const client = mqtt.connect(BROKER_URL);
 
 client.on('connect', () => {
   console.log('Connected to MQTT broker');
 
-  client.subscribe(
-    `${INPUT_TOPIC_PREFIX}${process.env.MQTT_TOPIC_ID}`,
-    (err) => {
-      if (err) {
-        console.error('Error:', err);
-      } else {
-        console.log(
-          `Subscribed to topic: ${INPUT_TOPIC_PREFIX}${process.env.MQTT_TOPIC_ID}`
-        );
-      }
+  client.subscribe(INPUT_TOPIC, (err) => {
+    if (err) {
+      console.error('Error:', err);
+    } else {
+      console.log(`Subscribed to topic: ${INPUT_TOPIC}`);
     }
-  );
+  });
 });
 
-client.on('message', (topic, message) => {
+client.on('message', (topic: string, message: Buffer) => {
   console.log(`Message received on topic: ${topic}`);
-  const supplementAmount = calculateWinterSupplement(
-    JSON.parse(message.toString())
-  );
-  client.publish(
-    `${OUTPUT_TOPIC_PREFIX}${process.env.MQTT_TOPIC_ID}`,
-    JSON.stringify(supplementAmount),
-    (err) => {
+
+  try {
+    const input: WinterSupplementInput = JSON.parse(message.toString());
+    const output: WinterSupplementOutput = calculateWinterSupplement(input);
+
+    client.publish(OUTPUT_TOPIC, JSON.stringify(output), (err) => {
       if (err) {
         console.error('Publish error:', err);
       } else {
         console.log(`Published result`);
       }
-    }
-  );
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
