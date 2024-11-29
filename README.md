@@ -15,9 +15,9 @@
 
 # Testing with the Web Application
 
-- Topic: BRE/calculateWinterSupplementInput/2
-- select json
-
+- Since the web application of https://winter-supplement-app-d690e5-tools.apps.silver.devops.gov.bc.ca/ does not seem to be working for me, I used a third party tool called MQTT Explorer to supplement my testing
+- On the right hand column, specify the topic, in this example I used `BRE/calculateWinterSupplementInput/2`
+- Select json and fill the payload data, for example:
 ```
 {
 "id": "0",
@@ -26,7 +26,13 @@
 "familyUnitInPayForDecember": true
 }
 ```
+![image](https://github.com/user-attachments/assets/f2103b7a-e21d-4cae-bedc-34d1c3e67736)
 
-- Search BRE in the search MQTT Explorer Search Bar
-- the input will be visibile under the BRE/calculateWinterSupplementInput/2 Topic
-- once you publish the json payload with the input data, you will see the output in the /calculateWinterSupplementOutput/2 Topic
+- Search BRE in the search MQTT Explorer search bar
+  
+![image](https://github.com/user-attachments/assets/491f67e5-2412-4c99-9d47-7d8d57654d92)
+
+- once you click publish for the json payload with the input data, you will see the input under the `BRE/calculateWinterSupplementInput/2` Topic and the published output from the rules engine in the `BRE/calculateWinterSupplementOutput/2` Topic
+
+![image](https://github.com/user-attachments/assets/2a8aba35-b065-4392-9649-89aa277704a5)
+
