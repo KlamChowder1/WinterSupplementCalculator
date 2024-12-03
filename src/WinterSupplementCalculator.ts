@@ -25,7 +25,7 @@ client.on('connect', () => {
 });
 
 client.on('message', (topic: string, message: Buffer) => {
-  console.log(`Message received on topic: ${topic}`);
+  console.log(`Message ${message.toString()} received on topic: ${topic}`);
 
   try {
     const input: WinterSupplementInput = JSON.parse(message.toString());
@@ -33,9 +33,11 @@ client.on('message', (topic: string, message: Buffer) => {
 
     client.publish(OUTPUT_TOPIC, JSON.stringify(output), (err) => {
       if (err) {
-        console.error('Publish error:', err);
+        console.error('Publishing error:', err);
       } else {
-        console.log(`Published result`);
+        console.log(
+          `Published result: ${JSON.stringify(output)} to ${OUTPUT_TOPIC}`
+        );
       }
     });
   } catch (err) {
