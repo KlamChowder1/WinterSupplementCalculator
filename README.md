@@ -2,11 +2,11 @@
 
 # Setup
 
-- Clone this repo via `git clone https://github.com/KlamChowder1/WinterSupplementCalculator.git`
-- ensure you have a Node version >= 16, otherwise download it here: https://nodejs.org/en
+- clone this repo via `git clone https://github.com/KlamChowder1/WinterSupplementCalculator.git`
+- ensure you have Node version >= 16 installed, otherwise download it here: https://nodejs.org/en
 - run `npm install` in the root folder `WinterSupplementCalculator`
 - create a `.env` file in the root folder and add `MQTT_TOPIC_ID=<id>`, replacing the `<id>` with the randomly generated MQTT topic ID from https://winter-supplement-app-d690e5-tools.apps.silver.devops.gov.bc.ca/
-- run `npm run start` in the root folder to start subscribing and publishing to the MQTT broker
+- run `npm run start` in the root folder to begin subscribing and publishing to the MQTT broker
 
 # Testing
 
@@ -20,7 +20,7 @@
 ![image](https://github.com/user-attachments/assets/b4fd3781-4194-4698-a2cd-ff2121865e47)
 
 - Once connected, specify the topic and payload on the right-hand panel.
-- In this example I used tge topic `BRE/calculateWinterSupplementInput/2` and the following payload
+- In this example I used the topic `BRE/calculateWinterSupplementInput/2` and the following payload
 
 ```
 {
@@ -37,10 +37,11 @@
 
 ![image](https://github.com/user-attachments/assets/491f67e5-2412-4c99-9d47-7d8d57654d92)
 
-- once you click publish for the json payload with the input data, you will see the input under the `BRE/calculateWinterSupplementInput/2` Topic and the published output from the rules engine in the `BRE/calculateWinterSupplementOutput/2` Topic
+- Once you click publish for the json payload with the input data, you will see the input under the `BRE/calculateWinterSupplementInput/2` Topic and the published output from the rules engine in the `BRE/calculateWinterSupplementOutput/2` Topic
 
 ![image](https://github.com/user-attachments/assets/fbdd6183-2b71-4422-a08b-c8a3c2d5d061)
 
+## Example video walkthrough:
 ![WinterSupplementCalculator](https://github.com/user-attachments/assets/c079ffdb-a3cb-43ba-a076-455f80e9e898)
 
 
