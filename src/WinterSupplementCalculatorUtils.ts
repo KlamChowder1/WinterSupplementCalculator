@@ -1,5 +1,6 @@
 import { WinterSupplementInput, WinterSupplementOutput } from './types';
 
+// validating inputs
 function isValidWinterSupplementInput(
   input: any
 ): input is WinterSupplementInput {
@@ -13,6 +14,7 @@ function isValidWinterSupplementInput(
   );
 }
 
+// rules engine business logic
 export function calculateWinterSupplement(
   input: WinterSupplementInput
 ): WinterSupplementOutput {

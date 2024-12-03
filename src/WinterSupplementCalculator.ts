@@ -15,6 +15,7 @@ const client = mqtt.connect(BROKER_URL);
 client.on('connect', () => {
   console.log(`Connected to MQTT broker ${BROKER_URL}`);
 
+  // subscribing to the input topic
   client.subscribe(INPUT_TOPIC, (err) => {
     if (err) {
       console.error('Error:', err);
@@ -31,6 +32,7 @@ client.on('message', (topic: string, message: Buffer) => {
     const input: WinterSupplementInput = JSON.parse(message.toString());
     const output: WinterSupplementOutput = calculateWinterSupplement(input);
 
+    // publishing results of the rules engine to the output topic
     client.publish(OUTPUT_TOPIC, JSON.stringify(output), (err) => {
       if (err) {
         console.error('Publishing error:', err);
