@@ -36,7 +36,9 @@ client.on('message', (topic: string, message: Buffer) => {
         console.error('Publishing error:', err);
       } else {
         console.log(
-          `Published result: ${JSON.stringify(output)} to ${OUTPUT_TOPIC}`
+          `Published result: ${JSON.stringify(
+            output
+          )} to topic: ${OUTPUT_TOPIC}`
         );
       }
     });
