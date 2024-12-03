@@ -16,16 +16,16 @@ function isValidWinterSupplementInput(
 export function calculateWinterSupplement(
   input: WinterSupplementInput
 ): WinterSupplementOutput {
+  if (!isValidWinterSupplementInput(input)) {
+    throw new Error('Invalid WinterSupplementInput format');
+  }
+
   const {
     id,
     numberOfChildren,
     familyComposition,
     familyUnitInPayForDecember,
   } = input;
-
-  if (!isValidWinterSupplementInput(input)) {
-    throw new Error('Invalid WinterSupplementInput format');
-  }
 
   const isEligible = familyUnitInPayForDecember;
 

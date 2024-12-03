@@ -10,10 +10,10 @@ function isValidWinterSupplementInput(input) {
         typeof input.familyUnitInPayForDecember === 'boolean');
 }
 function calculateWinterSupplement(input) {
-    var id = input.id, numberOfChildren = input.numberOfChildren, familyComposition = input.familyComposition, familyUnitInPayForDecember = input.familyUnitInPayForDecember;
     if (!isValidWinterSupplementInput(input)) {
         throw new Error('Invalid WinterSupplementInput format');
     }
+    var id = input.id, numberOfChildren = input.numberOfChildren, familyComposition = input.familyComposition, familyUnitInPayForDecember = input.familyUnitInPayForDecember;
     var isEligible = familyUnitInPayForDecember;
     if (!isEligible) {
         return {

@@ -2,7 +2,7 @@ import { calculateWinterSupplement } from './WinterSupplementCalculatorUtils';
 import { WinterSupplementInput, WinterSupplementOutput } from './types';
 
 describe('calculateWinterSupplement', () => {
-  it('should return supplement amount of 0 when familyUnitInPayForDecember is false', () => {
+  it('should return base amount of 0, children amount of 0, and supplement amount of 0 when familyUnitInPayForDecember is false', () => {
     const input: WinterSupplementInput = {
       id: '0',
       numberOfChildren: 2,
