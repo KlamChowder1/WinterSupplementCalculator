@@ -66,7 +66,7 @@ describe('calculateWinterSupplement', function () {
         };
         expect((0, WinterSupplementCalculatorUtils_1.calculateWinterSupplement)(input)).toEqual(output);
     });
-    it('should return base amount of 120, children amount of 40, and supplement amount of 180 for a couple with 2 children', function () {
+    it('should return base amount of 120, children amount of 40, and supplement amount of 160 for a couple with 2 children', function () {
         var input = {
             id: '0',
             numberOfChildren: 2,
@@ -78,8 +78,46 @@ describe('calculateWinterSupplement', function () {
             isEligible: true,
             baseAmount: 120,
             childrenAmount: 40,
-            supplementAmount: 180,
+            supplementAmount: 160,
         };
         expect((0, WinterSupplementCalculatorUtils_1.calculateWinterSupplement)(input)).toEqual(output);
+    });
+    describe('invalid inputs for WinterSupplementInput', function () {
+        it('throw an error when the input id is not a string', function () {
+            var input = {
+                id: 123,
+                numberOfChildren: 2,
+                familyComposition: 'couple',
+                familyUnitInPayForDecember: true,
+            };
+            expect(function () { return (0, WinterSupplementCalculatorUtils_1.calculateWinterSupplement)(input); }).toThrow('Invalid WinterSupplementInput format');
+        });
+        it('throw an error when the numberOfChildren is a negative number', function () {
+            var input = {
+                id: '123',
+                numberOfChildren: -2,
+                familyComposition: 'couple',
+                familyUnitInPayForDecember: true,
+            };
+            expect(function () { return (0, WinterSupplementCalculatorUtils_1.calculateWinterSupplement)(input); }).toThrow('Invalid WinterSupplementInput format');
+        });
+        it('throw an error when the familyComposition is not `single` or `couple`', function () {
+            var input = {
+                id: '123',
+                numberOfChildren: 2,
+                familyComposition: 'married',
+                familyUnitInPayForDecember: true,
+            };
+            expect(function () { return (0, WinterSupplementCalculatorUtils_1.calculateWinterSupplement)(input); }).toThrow('Invalid WinterSupplementInput format');
+        });
+        it('throw an error when familyUnitInPayForDecember is not a boolean', function () {
+            var input = {
+                id: '123',
+                numberOfChildren: 2,
+                familyComposition: 'couple',
+                familyUnitInPayForDecember: 'true',
+            };
+            expect(function () { return (0, WinterSupplementCalculatorUtils_1.calculateWinterSupplement)(input); }).toThrow('Invalid WinterSupplementInput format');
+        });
     });
 });

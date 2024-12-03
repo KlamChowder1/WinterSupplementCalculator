@@ -96,4 +96,58 @@ describe('calculateWinterSupplement', () => {
 
     expect(calculateWinterSupplement(input)).toEqual(output);
   });
+
+  describe('invalid inputs for WinterSupplementInput', () => {
+    it('should throw an error when the input id is not a string', () => {
+      const input: any = {
+        id: 123,
+        numberOfChildren: 2,
+        familyComposition: 'couple',
+        familyUnitInPayForDecember: true,
+      };
+
+      expect(() => calculateWinterSupplement(input)).toThrow(
+        'Invalid WinterSupplementInput format'
+      );
+    });
+
+    it('should throw an error when the numberOfChildren is a negative number', () => {
+      const input: any = {
+        id: '123',
+        numberOfChildren: -2,
+        familyComposition: 'couple',
+        familyUnitInPayForDecember: true,
+      };
+
+      expect(() => calculateWinterSupplement(input)).toThrow(
+        'Invalid WinterSupplementInput format'
+      );
+    });
+
+    it('should throw an error when the familyComposition is not `single` or `couple`', () => {
+      const input: any = {
+        id: '123',
+        numberOfChildren: 2,
+        familyComposition: 'married',
+        familyUnitInPayForDecember: true,
+      };
+
+      expect(() => calculateWinterSupplement(input)).toThrow(
+        'Invalid WinterSupplementInput format'
+      );
+    });
+
+    it('should throw an error when familyUnitInPayForDecember is not a boolean', () => {
+      const input: any = {
+        id: '123',
+        numberOfChildren: 2,
+        familyComposition: 'couple',
+        familyUnitInPayForDecember: 'true',
+      };
+
+      expect(() => calculateWinterSupplement(input)).toThrow(
+        'Invalid WinterSupplementInput format'
+      );
+    });
+  });
 });

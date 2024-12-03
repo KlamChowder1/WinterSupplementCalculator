@@ -1,16 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.calculateWinterSupplement = calculateWinterSupplement;
+function isValidWinterSupplementInput(input) {
+    return (typeof input.id === 'string' &&
+        typeof input.numberOfChildren === 'number' &&
+        input.numberOfChildren >= 0 &&
+        (input.familyComposition === 'single' ||
+            input.familyComposition === 'couple') &&
+        typeof input.familyUnitInPayForDecember === 'boolean');
+}
 function calculateWinterSupplement(input) {
-    // console.log('input', input);
     var id = input.id, numberOfChildren = input.numberOfChildren, familyComposition = input.familyComposition, familyUnitInPayForDecember = input.familyUnitInPayForDecember;
-    // console.log(
-    //   id,
-    //   numberOfChildren,
-    //   familyComposition,
-    //   familyUnitInPayForDecember
-    // );
-    // familyUnitInPayForDecember determines isEligible
+    if (!isValidWinterSupplementInput(input)) {
+        throw new Error('Invalid WinterSupplementInput format');
+    }
     var isEligible = familyUnitInPayForDecember;
     if (!isEligible) {
         return {

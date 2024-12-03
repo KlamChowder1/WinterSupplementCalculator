@@ -1,9 +1,21 @@
 import { WinterSupplementInput, WinterSupplementOutput } from './types';
 
+function isValidWinterSupplementInput(
+  input: any
+): input is WinterSupplementInput {
+  return (
+    typeof input.id === 'string' &&
+    typeof input.numberOfChildren === 'number' &&
+    input.numberOfChildren >= 0 &&
+    (input.familyComposition === 'single' ||
+      input.familyComposition === 'couple') &&
+    typeof input.familyUnitInPayForDecember === 'boolean'
+  );
+}
+
 export function calculateWinterSupplement(
   input: WinterSupplementInput
 ): WinterSupplementOutput {
-  // console.log('input', input);
   const {
     id,
     numberOfChildren,
@@ -11,13 +23,10 @@ export function calculateWinterSupplement(
     familyUnitInPayForDecember,
   } = input;
 
-  // console.log(
-  //   id,
-  //   numberOfChildren,
-  //   familyComposition,
-  //   familyUnitInPayForDecember
-  // );
-  // familyUnitInPayForDecember determines isEligible
+  if (!isValidWinterSupplementInput(input)) {
+    throw new Error('Invalid WinterSupplementInput format');
+  }
+
   const isEligible = familyUnitInPayForDecember;
 
   if (!isEligible) {
