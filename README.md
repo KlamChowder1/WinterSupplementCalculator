@@ -2,7 +2,7 @@
 
 # Setup
 
-- `git clone https://github.com/KlamChowder1/WinterSupplementCalculator.git`
+- Clone this repo via `git clone https://github.com/KlamChowder1/WinterSupplementCalculator.git`
 - ensure you have a Node version >= 16, otherwise download it here: https://nodejs.org/en
 - run `npm install` in the root folder `WinterSupplementCalculator`
 - create a `.env` file in the root folder and add `MQTT_TOPIC_ID=<id>`, replacing the `<id>` with the randomly generated MQTT topic ID from https://winter-supplement-app-d690e5-tools.apps.silver.devops.gov.bc.ca/
