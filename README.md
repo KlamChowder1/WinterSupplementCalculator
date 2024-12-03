@@ -14,9 +14,13 @@
 
 # Testing with the Web Application
 
-- Since the web application of https://winter-supplement-app-d690e5-tools.apps.silver.devops.gov.bc.ca/ does not seem to be working for me, I used a third party tool called MQTT Explorer to supplement my testing
-- On the right hand column, specify the topic, in this example I used `BRE/calculateWinterSupplementInput/2`
-- Select json and fill the payload data, for example:
+- Since the web application of https://winter-supplement-app-d690e5-tools.apps.silver.devops.gov.bc.ca/ does not seem to be working for me, I used a third party tool called MQTT Explorer (https://mqtt-explorer.com/) to supplement my testing
+- Once downloaded, run the MQTT Explorer application and connect to the MQTT broker specifying the host and port, then click `Connect`
+  
+![image](https://github.com/user-attachments/assets/b4fd3781-4194-4698-a2cd-ff2121865e47)
+
+- Once connected, specify the topic and payload on the right-hand panel.
+- In this example I used `BRE/calculateWinterSupplementInput/2`
 
 ```
 {
