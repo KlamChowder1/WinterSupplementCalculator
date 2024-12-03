@@ -20,18 +20,18 @@
 ![image](https://github.com/user-attachments/assets/b4fd3781-4194-4698-a2cd-ff2121865e47)
 
 - Once connected, specify the topic and payload on the right-hand panel.
-- In this example I used `BRE/calculateWinterSupplementInput/2`
+- In this example I used tge topic `BRE/calculateWinterSupplementInput/2` and the following payload
 
 ```
 {
 "id": "0",
-"numberOfChildren": "2",
+"numberOfChildren": 2,
 "familyComposition": "single",
 "familyUnitInPayForDecember": true
 }
 ```
 
-![image](https://github.com/user-attachments/assets/e0547df3-aa86-4aeb-93de-746596041917)
+![image](https://github.com/user-attachments/assets/4511781e-a5f2-40f7-8f21-2cd2c71b84f8)
 
 - Search BRE in the search MQTT Explorer search bar
 
@@ -39,4 +39,8 @@
 
 - once you click publish for the json payload with the input data, you will see the input under the `BRE/calculateWinterSupplementInput/2` Topic and the published output from the rules engine in the `BRE/calculateWinterSupplementOutput/2` Topic
 
-![image](https://github.com/user-attachments/assets/10fef3f4-cd9f-44d9-9695-9fa3a93a765e)
+![image](https://github.com/user-attachments/assets/fbdd6183-2b71-4422-a08b-c8a3c2d5d061)
+
+![WinterSupplementCalculator](https://github.com/user-attachments/assets/c079ffdb-a3cb-43ba-a076-455f80e9e898)
+
+
