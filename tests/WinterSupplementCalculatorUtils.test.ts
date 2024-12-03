@@ -1,8 +1,5 @@
-import { calculateWinterSupplement } from '../src/winterSupplement/WinterSupplementCalculatorUtils';
-import {
-  WinterSupplementInput,
-  WinterSupplementOutput,
-} from '../src/winterSupplement/types';
+import { calculateWinterSupplement } from '../src/WinterSupplementCalculatorUtils';
+import { WinterSupplementInput, WinterSupplementOutput } from '../src/types';
 
 describe('calculateWinterSupplement', () => {
   it('should return base amount of 0, children amount of 0, and supplement amount of 0 when familyUnitInPayForDecember is false', () => {

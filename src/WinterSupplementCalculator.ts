@@ -1,8 +1,8 @@
 import mqtt from 'mqtt';
 import * as dotenv from 'dotenv';
 
-import { calculateWinterSupplement } from './WinterSupplementCalculatorUtils.js';
-import { WinterSupplementInput, WinterSupplementOutput } from './types.js';
+import { calculateWinterSupplement } from './WinterSupplementCalculatorUtils';
+import { WinterSupplementInput, WinterSupplementOutput } from './types';
 
 dotenv.config();
 
