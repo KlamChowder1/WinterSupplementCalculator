@@ -10,7 +10,7 @@
 
 # Testing
 
-- run `npm run test` to run the test suites
+- run `npm run test` in the root folder to run the test suites
 
 # Testing with the Web Application
 
