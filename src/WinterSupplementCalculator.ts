@@ -13,7 +13,7 @@ const OUTPUT_TOPIC = `BRE/calculateWinterSupplementOutput/${process.env.MQTT_TOP
 const client = mqtt.connect(BROKER_URL);
 
 client.on('connect', () => {
-  console.log('Connected to MQTT broker');
+  console.log(`Connected to MQTT broker ${BROKER_URL}`);
 
   client.subscribe(INPUT_TOPIC, (err) => {
     if (err) {
